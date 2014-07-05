@@ -59,7 +59,7 @@ int main (void)
 			}					
 		}
 
-		/* 500 miliseconds */
+		/* 500 milliseconds */
 		usleep(500*1000);
 		printf(".");
 		fflush(stdout);
