@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <libudev.h>
 
-int main (void)
+int main()
 {
 	struct udev *udev;
 	struct udev_device *dev;
@@ -22,7 +22,7 @@ int main (void)
 	udev = udev_new();
 	if (!udev) {
 		printf("Can't create udev\n");
-		exit(1);
+		return -1;
 	}
 
 	mon = udev_monitor_new_from_netlink(udev, "udev");
@@ -43,7 +43,6 @@ int main (void)
 		ret = select(fd+1, &fds, NULL, NULL, &tv);
 		
 		if (ret > 0 && FD_ISSET(fd, &fds)) {
-			
 			dev = udev_monitor_receive_device(mon);
 			if (dev) {
 				printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
