@@ -39,11 +39,11 @@ using libudev API we monitor 'net' subsystem for events.
         [user@linux ~]$ ./udev_example3
         ...
         DEVNAME: net0
-        DEVPATH: /devices/pci0000:00/0000:00:19.0/net/net0
+        DEVPATH: /sys/devices/pci0000:00/0000:00:19.0/net/net0
         MACADDR: (null)
         ACTION: remove
         .............
         DEVNAME: net0
-        DEVPATH: /devices/pci0000:00/0000:00:19.0/net/net0
+        DEVPATH: /sys/devices/pci0000:00/0000:00:19.0/net/net0
         MACADDR: d4:be:d9:2b:86:7c
         ACTION: add
