@@ -2,7 +2,7 @@
  *
  * this example will enumerate all devices belonging
  * to 'block' subsystem and omit all those which devtype
- * is 'partition'
+ * is 'partition' or sysname start with 'loop'.
  *
  */
 
