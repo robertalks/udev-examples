@@ -50,6 +50,7 @@ int main (void)
 				printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
 				printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
 				printf("ACTION: %s\n", udev_device_get_action(dev));
+				printf("---\n");
 
 				/* free dev */
 				udev_device_unref(dev);
@@ -61,8 +62,6 @@ int main (void)
 
 		/* 500 milliseconds */
 		usleep(500*1000);
-		printf(".");
-		fflush(stdout);
 	}
 
 	/* free udev */
