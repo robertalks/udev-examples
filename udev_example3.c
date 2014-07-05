@@ -55,9 +55,6 @@ int main (void)
 				/* free dev */
 				udev_device_unref(dev);
 			}
-			else {
-				printf("No Device from receive_device(). An error occured.\n");
-			}					
 		}
 
 		/* 500 milliseconds */
