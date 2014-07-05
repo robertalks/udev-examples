@@ -20,14 +20,14 @@ int main()
 	struct udev_enumerate *enumerate;
 	struct udev_list_entry *devices, *dev_list_entry;
 
-	/* initialize udev object */
+	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
 		printf("Cannot create udev context.\n");
 		return -1;
 	}
 
-	/* initialize enumerate object */
+	/* create enumerate object */
 	enumerate = udev_enumerate_new(udev);
 	if (!enumerate) {
 		printf("Cannot create enumerate context.\n");

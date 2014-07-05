@@ -16,7 +16,7 @@ int main()
 	struct udev *udev;
 	struct udev_device *dev;
 
-	/* initialize udev object */
+	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
 		printf("Cannot create udev context.\n");
