@@ -47,7 +47,7 @@ int main (void)
 			dev = udev_monitor_receive_device(mon);
 			if (dev) {
 				printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
-				printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
+				printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
 				printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
 				printf("ACTION: %s\n", udev_device_get_action(dev));
 
