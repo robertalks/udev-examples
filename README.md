@@ -1,7 +1,7 @@
 udev-examples
 =============
 
-** libudev API examples **
+**libudev API examples**
 
 * udev_example1.c:
 using libudev API we get basic information for network device 'eth0'.
