@@ -7,7 +7,7 @@ udev-examples
 using libudev API we get basic information for network device 'eth0'.
 
 
-example::
+*example:*
 
         [user@linux ~]$ ./udev_example1
         DEVNAME: eth0
@@ -18,7 +18,7 @@ example::
 * udev_example2.c:
 using libudev API we enumerate all devices under 'block' subsystem that are not 'partitions' or 'loop' devices.
 
-example::
+*example:*
 
         [user@linux ~]$ ./udev_example2
         DEVNODE: /dev/sda
@@ -34,7 +34,7 @@ example::
 * udev_example3.c:
 using libudev API we monitor 'net' subsystem for events.
 
-example::
+*example:*
 
         [user@linux ~]$ ./udev_example3
         ...
