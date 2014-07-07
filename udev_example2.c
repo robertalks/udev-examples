@@ -45,7 +45,7 @@ int main()
 		path = udev_list_entry_get_name(dev_list_entry);	
 		dev = udev_device_new_from_syspath(udev, path);
 
-		/* skip if device/disk is a partition */
+		/* skip if device/disk is a partition or loop device */
 		if (strncmp(udev_device_get_devtype(dev), "partition", 9) != 0 &&
 		    strncmp(udev_device_get_sysname(dev), "loop", 4) != 0) {
 			printf("DEVNODE: %s\n", udev_device_get_devnode(dev));
@@ -55,8 +55,7 @@ int main()
 			tmp = udev_device_get_sysattr_value(dev, "size");
 			if (tmp) {
 
-				/* leave disk_size 0 if device/disk name start with sr*
-				   (usually cd/dvd devices) */
+				/* skip size if devices is a CD/DVD */
 				if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
 					disk_size = strtol(tmp, NULL, 10);
 
