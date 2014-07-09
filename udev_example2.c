@@ -57,7 +57,7 @@ int main()
 
 				/* skip size if devices is a CD/DVD */
 				if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
-					disk_size = strtol(tmp, NULL, 10);
+					disk_size = strtoull(tmp, NULL, 10);
 
 				printf("DEVSIZE: %lld GB\n", (disk_size * BLOCK_SIZE) / 1000000000);
 			}
