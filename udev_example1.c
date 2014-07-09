@@ -1,12 +1,11 @@
 /* udev_example1.c
- * 
+ *
  * this example will get basic information about
  * a specified network device
  *
  */
 
 #include <stdio.h>
-#include <string.h>
 #include <libudev.h>
 
 #define DEVICE_PATH "/sys/class/net/eth0"

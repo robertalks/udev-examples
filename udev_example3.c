@@ -1,6 +1,6 @@
 /* udev_example3.c
- * 
- * this example monitors udev events for 'net' subsystem 
+ *
+ * this example monitors udev events for 'net' subsystem
  * using libudev's API
  *
  */
@@ -17,7 +17,7 @@ int main()
 	struct udev_device *dev;
    	struct udev_monitor *mon;
 	int fd;
-	
+
 	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
@@ -34,14 +34,13 @@ int main()
 		fd_set fds;
 		struct timeval tv;
 		int ret;
-		
+
 		FD_ZERO(&fds);
 		FD_SET(fd, &fds);
 		tv.tv_sec = 0;
 		tv.tv_usec = 0;
-		
+
 		ret = select(fd+1, &fds, NULL, NULL, &tv);
-		
 		if (ret > 0 && FD_ISSET(fd, &fds)) {
 			dev = udev_monitor_receive_device(mon);
 			if (dev) {
@@ -55,11 +54,9 @@ int main()
 				udev_device_unref(dev);
 			}
 		}
-
 		/* 500 milliseconds */
 		usleep(500*1000);
 	}
-
 	/* free udev */
 	udev_unref(udev);
 

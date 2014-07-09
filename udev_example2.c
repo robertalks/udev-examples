@@ -42,7 +42,7 @@ int main()
 		const char *path, *tmp;
 		unsigned long long disk_size = 0;
 
-		path = udev_list_entry_get_name(dev_list_entry);	
+		path = udev_list_entry_get_name(dev_list_entry);
 		dev = udev_device_new_from_syspath(udev, path);
 
 		/* skip if device/disk is a partition or loop device */
@@ -54,7 +54,6 @@ int main()
 
 			tmp = udev_device_get_sysattr_value(dev, "size");
 			if (tmp) {
-
 				/* skip size if devices is a CD/DVD */
 				if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
 					disk_size = strtoull(tmp, NULL, 10);
@@ -62,11 +61,9 @@ int main()
 				printf("DEVSIZE: %lld GB\n", (disk_size * BLOCK_SIZE) / 1000000000);
 			}
 		}
-
 		/* free dev */
 		udev_device_unref(dev);
 	}
-
 	/* free enumerate */
 	udev_enumerate_unref(enumerate);
 	/* free udev */
