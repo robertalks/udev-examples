@@ -41,6 +41,7 @@ int main()
 	udev_list_entry_foreach(dev_list_entry, devices) {
 		const char *path, *tmp;
 		unsigned long long disk_size = 0;
+		unsigned short int block_size = BLOCK_SIZE;
 
 		path = udev_list_entry_get_name(dev_list_entry);
 		dev = udev_device_new_from_syspath(udev, path);
@@ -50,20 +51,22 @@ int main()
 		    strncmp(udev_device_get_sysname(dev), "loop", 4) != 0) {
 			printf("DEVNODE: %s\n", udev_device_get_devnode(dev));
 			printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
-			if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
-				printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
-			else
-				printf("DEVTYPE: cdrom\n");
+			printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
 
 			tmp = udev_device_get_sysattr_value(dev, "size");
-			if (tmp) {
-				/* skip size if devices is a CD/DVD */
-				if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
-					disk_size = strtoull(tmp, NULL, 10);
+			if (tmp)
+				disk_size = strtoull(tmp, NULL, 10);
 
-				printf("DEVSIZE: %lld GB\n", (disk_size * BLOCK_SIZE) / 1000000000);
-			}
+			tmp = udev_device_get_sysattr_value(dev, "queue/logical_block_size");
+			if (tmp)
+				block_size = strtoull(tmp, NULL, 10);
+
+			if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
+				printf("DEVSIZE: %lld GB\n", (disk_size * block_size) / 1000000000);
+			else
+				printf("DEVSIZE: n/a\n");
 		}
+
 		/* free dev */
 		udev_device_unref(dev);
 	}
