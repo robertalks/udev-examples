@@ -50,7 +50,7 @@ int main()
 		if (strncmp(udev_device_get_devtype(dev), "partition", 9) != 0 &&
 		    strncmp(udev_device_get_sysname(dev), "loop", 4) != 0) {
 			printf("DEVNODE: %s\n", udev_device_get_devnode(dev));
-			printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
+			printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
 			printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
 
 			tmp = udev_device_get_sysattr_value(dev, "size");

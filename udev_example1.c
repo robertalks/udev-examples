@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
-	printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
+	printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
 	printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
 
 	/* free dev */
