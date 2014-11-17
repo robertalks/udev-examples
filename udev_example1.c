@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
 	if (!device) {
 		fprintf(stderr, "Failed to allocate memory for device.");
 		return -1;
-	} else {
-		/* build device path out of SYSPATH macro and argv[1] */
-		sprintf(device, "%s/%s", SYSPATH, argv[1]);
 	}
+	
+	/* build device path out of SYSPATH macro and argv[1] */
+	sprintf(device, "%s/%s", SYSPATH, argv[1]);
 	
 	/* create udev object */
 	udev = udev_new();

@@ -50,7 +50,10 @@ int main()
 		    strncmp(udev_device_get_sysname(dev), "loop", 4) != 0) {
 			printf("DEVNODE: %s\n", udev_device_get_devnode(dev));
 			printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
-			printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
+			if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
+				printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
+			else
+				printf("DEVTYPE: cdrom\n");
 
 			tmp = udev_device_get_sysattr_value(dev, "size");
 			if (tmp) {
