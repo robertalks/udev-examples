@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
 	struct udev *udev;
 	struct udev_device *dev;
-	char *device;
+	char *device = NULL;
 
 	/* verify that we have an argument, like eth0, otherwise fail */
 	if (!argv[1]) {
