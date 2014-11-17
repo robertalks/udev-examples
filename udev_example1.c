@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
 	struct udev *udev;
 	struct udev_device *dev;
-	char *eth, *device;
+	char *device;
 
 	/* create udev object */
 	udev = udev_new();
@@ -25,14 +25,13 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	eth = argv[1];
-	if (!eth) {
+	if (!argv[1]) {
 		fprintf(stderr, "Missing network interface name.\nexample: %s eth0\n", argv[0]);
 		return -1;
 	}
 
-	device = malloc(strlen(SYSPATH) + strlen(eth) + 1);
-	sprintf(device, "%s/%s", SYSPATH, eth);
+	device = malloc(strlen(SYSPATH) + strlen(argv[1]) + 1);
+	sprintf(device, "%s/%s", SYSPATH, argv[1]);
 
 	/* get device based on path */
 	dev = udev_device_new_from_syspath(udev, device);
@@ -44,9 +43,6 @@ int main(int argc, char *argv[])
 	printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
 	printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
 	printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
-
-	/* free device */
-	free(device);
 
 	/* free dev */
 	udev_device_unref(dev);
