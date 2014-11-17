@@ -18,20 +18,28 @@ int main(int argc, char *argv[])
 	struct udev_device *dev;
 	char *device;
 
+	/* verify that we have an argument, like eth0, otherwise fail */
+	if (!argv[1]) {
+		fprintf(stderr, "Missing network interface name.\nexample: %s eth0\n", argv[0]);
+		return -1;
+	}
+
+	/* allocate device based on SYSPATH and argv[1] */
+	device = malloc(strlen(SYSPATH) + strlen(argv[1]) + 1);
+	if (!device) {
+		fprintf(stderr, "Failed to allocate memory for device.");
+		return -1;
+	} else {
+		/* build device path out of SYSPATH macro and argv[1] */
+		sprintf(device, "%s/%s", SYSPATH, argv[1]);
+	}
+	
 	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
 		fprintf(stderr, "Cannot create udev context.\n");
 		return -1;
 	}
-
-	if (!argv[1]) {
-		fprintf(stderr, "Missing network interface name.\nexample: %s eth0\n", argv[0]);
-		return -1;
-	}
-
-	device = malloc(strlen(SYSPATH) + strlen(argv[1]) + 1);
-	sprintf(device, "%s/%s", SYSPATH, argv[1]);
 
 	/* get device based on path */
 	dev = udev_device_new_from_syspath(udev, device);
