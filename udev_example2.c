@@ -23,14 +23,14 @@ int main()
 	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
-		printf("Cannot create udev context.\n");
+		fprintf(stderr, "Cannot create udev context.\n");
 		return -1;
 	}
 
 	/* create enumerate object */
 	enumerate = udev_enumerate_new(udev);
 	if (!enumerate) {
-		printf("Cannot create enumerate context.\n");
+		fprintf(stderr, "Cannot create enumerate context.\n");
 		return -1;
 	}
 

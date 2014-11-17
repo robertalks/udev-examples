@@ -21,7 +21,7 @@ int main()
 	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
-		printf("Can't create udev\n");
+		fprintf(stderr, "Can't create udev\n");
 		return -1;
 	}
 

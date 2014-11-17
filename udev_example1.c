@@ -6,35 +6,51 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <libudev.h>
 
-#define DEVICE_PATH "/sys/class/net/eth0"
+#define SYSPATH "/sys/class/net"
 
-int main()
+int main(int argc, char *argv[])
 {
 	struct udev *udev;
 	struct udev_device *dev;
+	char *eth, *device;
 
 	/* create udev object */
 	udev = udev_new();
 	if (!udev) {
-		printf("Cannot create udev context.\n");
+		fprintf(stderr, "Cannot create udev context.\n");
 		return -1;
 	}
+
+	eth = argv[1];
+	if (!eth) {
+		fprintf(stderr, "Missing network interface name.\nexample: %s eth0\n", argv[0]);
+		return -1;
+	}
+
+	device = malloc(strlen(SYSPATH) + strlen(eth) + 1);
+	sprintf(device, "%s/%s", SYSPATH, eth);
 
 	/* get device based on path */
-	dev = udev_device_new_from_syspath(udev, DEVICE_PATH);
+	dev = udev_device_new_from_syspath(udev, device);
 	if (!dev) {
-		printf("Failed to get device.\n");
+		fprintf(stderr, "Failed to get device.\n");
 		return -1;
 	}
-
+	
 	printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
 	printf("DEVPATH: /sys%s\n", udev_device_get_devpath(dev));
 	printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
 
+	/* free device */
+	free(device);
+
 	/* free dev */
 	udev_device_unref(dev);
+
 	/* free udev */
 	udev_unref(udev);
 
