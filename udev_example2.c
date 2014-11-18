@@ -69,9 +69,10 @@ int main()
 		/* skip if device/disk is a partition or loop device */
 		if (strncmp(udev_device_get_devtype(dev), "partition", 9) != 0 &&
 		    strncmp(udev_device_get_sysname(dev), "loop", 4) != 0) {
-			printf("DEVNODE: %s\n", udev_device_get_devnode(dev));
-			printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
-			printf("DEVTYPE: %s\n", udev_device_get_devtype(dev));
+			printf("I: DEVNODE=%s\n", udev_device_get_devnode(dev));
+			printf("I: KERNEL=%s\n", udev_device_get_sysname(dev));
+			printf("I: DEVPATH=%s\n", udev_device_get_devpath(dev));
+			printf("I: DEVTYPE=%s\n", udev_device_get_devtype(dev));
 
 			tmp = udev_device_get_sysattr_value(dev, "size");
 			if (tmp)
@@ -81,10 +82,11 @@ int main()
 			if (tmp)
 				block_size = atoi(tmp);
 
+			printf("I: DEVSIZE=");
 			if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
-				printf("DEVSIZE: %lld GB\n", (disk_size * block_size) / 1000000000);
+				printf("%lld GB\n", (disk_size * block_size) / 1000000000);
 			else
-				printf("DEVSIZE: n/a\n");
+				printf("n/a\n");
 		}
 
 		/* free dev */

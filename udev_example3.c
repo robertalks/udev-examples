@@ -56,10 +56,10 @@ int main()
 		if (ret > 0 && FD_ISSET(fd, &fds)) {
 			dev = udev_monitor_receive_device(mon);
 			if (dev) {
-				printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
-				printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
-				printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
-				printf("ACTION: %s\n", udev_device_get_action(dev));
+				printf("I: ACTION=%s\n", udev_device_get_action(dev));
+				printf("I: DEVNAME=%s\n", udev_device_get_sysname(dev));
+				printf("I: DEVPATH=%s\n", udev_device_get_devpath(dev));
+				printf("I: MACADDR=%s\n", udev_device_get_sysattr_value(dev, "address"));
 				printf("---\n");
 
 				/* free dev */

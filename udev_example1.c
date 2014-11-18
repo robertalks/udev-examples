@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	
-	printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
-	printf("DEVPATH: %s\n", udev_device_get_devpath(dev));
-	printf("MACADDR: %s\n", udev_device_get_sysattr_value(dev, "address"));
+	printf("I: DEVNAME=%s\n", udev_device_get_sysname(dev));
+	printf("I: DEVPATH=%s\n", udev_device_get_devpath(dev));
+	printf("I: MACADDR=%s\n", udev_device_get_sysattr_value(dev, "address"));
 
 	/* free dev */
 	udev_device_unref(dev);
