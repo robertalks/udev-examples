@@ -21,8 +21,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <libudev.h>
 
 #define SYSPATH "/sys/class/net"
