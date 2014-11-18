@@ -73,7 +73,7 @@ int main()
 
 			tmp = udev_device_get_sysattr_value(dev, "queue/logical_block_size");
 			if (tmp)
-				block_size = strtoull(tmp, NULL, 10);
+				block_size = atoi(tmp);
 
 			if (strncmp(udev_device_get_sysname(dev), "sr", 2) != 0)
 				printf("DEVSIZE: %lld GB\n", (disk_size * block_size) / 1000000000);
