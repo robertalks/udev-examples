@@ -21,8 +21,8 @@
  */
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <libudev.h>
 
 #define BLOCK_SIZE 512
