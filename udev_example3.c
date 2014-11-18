@@ -34,7 +34,7 @@ int main()
 	udev = udev_new();
 	if (!udev) {
 		fprintf(stderr, "Can't create udev\n");
-		return -1;
+		return 1;
 	}
 
 	mon = udev_monitor_new_from_netlink(udev, "udev");

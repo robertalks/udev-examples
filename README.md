@@ -9,7 +9,7 @@ using libudev API we get basic information for network device 'eth0'.
 
 *example:*
 
-        [user@linux ~]$ ./udev_example1
+        [user@linux ~]$ ./udev_example1 eth0
         DEVNAME: eth0
         DEVPATH: /sys/devices/pci0000:00/0000:00:19.0/net/eth0
         MACADDR: 18:03:73:db:c3:31
@@ -28,7 +28,7 @@ using libudev API we enumerate all devices under 'block' subsystem that are not 
         DEVNODE: /dev/sr0
         DEVPATH: /sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sr0
         DEVTYPE: disk
-        DEVSIZE: 0 GB
+        DEVSIZE: n/a
 
 
 * udev_example3.c:

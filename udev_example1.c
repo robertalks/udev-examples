@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	/* verify that we have an argument, like eth0, otherwise fail */
 	if (!argv[1]) {
 		fprintf(stderr, "Missing network interface name.\nexample: %s eth0\n", argv[0]);
-		return -1;
+		return 1;
 	}
 
 	/* build device path out of SYSPATH macro and argv[1] */
@@ -44,14 +44,14 @@ int main(int argc, char *argv[])
 	udev = udev_new();
 	if (!udev) {
 		fprintf(stderr, "Cannot create udev context.\n");
-		return -1;
+		return 1;
 	}
 
 	/* get device based on path */
 	dev = udev_device_new_from_syspath(udev, device);
 	if (!dev) {
 		fprintf(stderr, "Failed to get device.\n");
-		return -1;
+		return 1;
 	}
 	
 	printf("DEVNAME: %s\n", udev_device_get_sysname(dev));
