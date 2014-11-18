@@ -1,7 +1,22 @@
 /* udev_example1.c
  *
- * this example will get basic information about
- * a specified network device
+ * Copyright (C) 2014 Robert Milasan <rmilasan@suse.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * This example will get basic information about a specified network
+ * device using libudev API.
  *
  */
 
@@ -16,7 +31,7 @@ int main(int argc, char *argv[])
 {
 	struct udev *udev;
 	struct udev_device *dev;
-	char *device = NULL;
+	char device[128]; 
 
 	/* verify that we have an argument, like eth0, otherwise fail */
 	if (!argv[1]) {
@@ -24,15 +39,8 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	/* allocate device based on SYSPATH and argv[1] */
-	device = malloc(strlen(SYSPATH) + strlen(argv[1]) + 1);
-	if (!device) {
-		fprintf(stderr, "Failed to allocate memory for device.");
-		return -1;
-	}
-	
 	/* build device path out of SYSPATH macro and argv[1] */
-	sprintf(device, "%s/%s", SYSPATH, argv[1]);
+	snprintf(device, sizeof(device), "%s/%s", SYSPATH, argv[1]);
 	
 	/* create udev object */
 	udev = udev_new();
