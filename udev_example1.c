@@ -28,7 +28,7 @@
 int main(int argc, char *argv[])
 {
 	struct udev *udev;
-	struct udev_device *dev;
+	struct udev_device *dev, *dev_parent;
 	char device[128]; 
 
 	/* verify that we have an argument, like eth0, otherwise fail */
@@ -57,6 +57,10 @@ int main(int argc, char *argv[])
 	printf("I: DEVNAME=%s\n", udev_device_get_sysname(dev));
 	printf("I: DEVPATH=%s\n", udev_device_get_devpath(dev));
 	printf("I: MACADDR=%s\n", udev_device_get_sysattr_value(dev, "address"));
+
+	dev_parent = udev_device_get_parent(dev);
+	if (dev_parent)
+		printf("I: DRIVER=%s\n", udev_device_get_driver(dev_parent));
 
 	/* free dev */
 	udev_device_unref(dev);

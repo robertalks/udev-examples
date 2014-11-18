@@ -13,6 +13,7 @@ using libudev API we get basic information for network device 'eth0'.
         I: DEVNAME=eth0
         I: DEVPATH=/devices/pci0000:00/0000:00:19.0/net/eth0
         I: MACADDR=18:03:73:db:c3:31
+        I: DRIVER=e1000
 
 
 * udev_example2.c:
