@@ -49,3 +49,11 @@ using libudev API we monitor 'net' subsystem for events.
         I: DEVNAME=net0
         I: DEVPATH=/devices/pci0000:00/0000:00:19.0/net/net0
         I: MACADDR=d4:be:d9:2b:86:7c
+
+License
+-------
+
+Copyright (C) 2014-2021 Robert Milasan <robert@linux-source.org>.
+
+uprg is free software made available under the GPL2. For details see
+the LICENSE file.

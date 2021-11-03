@@ -1,6 +1,6 @@
 /* udev_example3.c
  *
- * Copyright (C) 2014 Robert Milasan <rmilasan@suse.com>
+ * Copyright (C) 2014-2021 Robert Milasan <robert@linux-source.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
